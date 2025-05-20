@@ -45,10 +45,9 @@ public class PowerOfTwoMaxHeap {
             System.out.println("HEAP IS EMPTY!!!"); return 0; 
         } 
         int max = Heap.get(0);
-        Heap.set(0, Heap.get(Heap.size() - 1));
-        Heap.set(Heap.size() - 1, max);
+        Heap.set(0, Heap.get(Heap.size() - 1)); // set root to last element
         heapifyDown(0);
-        Heap.remove(Heap.size() - 1);
+        Heap.remove(Heap.size() - 1); // chop off last element (no need to set it to the old max)
         return max;
     }
 
@@ -65,11 +64,12 @@ public class PowerOfTwoMaxHeap {
             }
 
         if (largest != i){
-                int temp = Heap.get(i);
+                int temp = Heap.get(i); // old parent value
                 Heap.set(i, Heap.get(largest)); // move new largest child up to parent
                 Heap.set(largest, temp); // move old parent down to largest child's position
                 heapifyDown(largest);
-            }
+
+            }     
     }
 
     public void Print() {
@@ -126,5 +126,9 @@ public class PowerOfTwoMaxHeap {
         mh.insert(31);
 
         System.out.println("Heap after new values: " + mh.Heap.toString());
+        System.out.println("Popped Max: " + mh.popMax()); 
+        System.out.println("New Heap: " + mh.Heap.toString()); 
+        System.out.println("Popped Max: " + mh.popMax()); 
+        System.out.println("New Heap: " + mh.Heap.toString()); 
     }
 }
