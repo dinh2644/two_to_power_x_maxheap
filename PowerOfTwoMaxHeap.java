@@ -83,52 +83,87 @@ public class PowerOfTwoMaxHeap {
         }
     }
 
+    public boolean isValidMaxHeap() {
+    for (int i = 0; i < Heap.size(); i++) {
+        for (int childPos = 1; childPos <= CHILD_ARITY; childPos++) {
+            int childIndex = CHILD_ARITY * i + childPos;
+            if (childIndex < Heap.size() && Heap.get(i) < Heap.get(childIndex)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
     // ************************************ MAIN ************************************
 
     public static void main(String[] args) {
-        PowerOfTwoMaxHeap mh = new PowerOfTwoMaxHeap(4); // CHILD_ARITY = x
-        mh.insert(1);
-        mh.insert(4);
-        mh.insert(2);
-        mh.insert(5);
-        mh.insert(13);
-        mh.insert(6);
-        mh.insert(17);
+        // PowerOfTwoMaxHeap mh = new PowerOfTwoMaxHeap(4); // CHILD_ARITY = x
+        // mh.insert(1);
+        // mh.insert(4);
+        // mh.insert(2);
+        // mh.insert(5);
+        // mh.insert(13);
+        // mh.insert(6);
+        // mh.insert(17);
 
-        System.out.println("Heap: " + mh.Heap.toString());
-        System.out.println("Heap Size: " + mh.Heap.size());
-        System.out.println("Popped Max: " + mh.popMax());
-        System.out.println("New Heap: " + mh.Heap.toString());
-        System.out.println("Popped Max: " + mh.popMax());
-        System.out.println("New Heap: " + mh.Heap.toString());
-        System.out.println("Popped Max: " + mh.popMax());
-        System.out.println("New Heap: " + mh.Heap.toString());
-        System.out.println("Popped Max: " + mh.popMax());
-        System.out.println("New Heap: " + mh.Heap.toString());
-        System.out.println("Popped Max: " + mh.popMax());
-        System.out.println("New Heap: " + mh.Heap.toString());
-        System.out.println("Popped Max: " + mh.popMax());
-        System.out.println("New Heap: " + mh.Heap.toString());
-        System.out.println("Popped Max: " + mh.popMax());
-        System.out.println("New Heap: " + mh.Heap.toString());
-        System.out.println("Popped Max: " + mh.popMax()); // Should print HEAP IS EMPTY!!!
-        System.out.println("New Heap: " + mh.Heap.toString());
+        // System.out.println("Heap: " + mh.Heap.toString());
+        // System.out.println("Heap Size: " + mh.Heap.size());
+        // System.out.println("Popped Max: " + mh.popMax());
+        // System.out.println("New Heap: " + mh.Heap.toString());
+        // System.out.println("Popped Max: " + mh.popMax());
+        // System.out.println("New Heap: " + mh.Heap.toString());
+        // System.out.println("Popped Max: " + mh.popMax());
+        // System.out.println("New Heap: " + mh.Heap.toString());
+        // System.out.println("Popped Max: " + mh.popMax());
+        // System.out.println("New Heap: " + mh.Heap.toString());
+        // System.out.println("Popped Max: " + mh.popMax());
+        // System.out.println("New Heap: " + mh.Heap.toString());
+        // System.out.println("Popped Max: " + mh.popMax());
+        // System.out.println("New Heap: " + mh.Heap.toString());
+        // System.out.println("Popped Max: " + mh.popMax());
+        // System.out.println("New Heap: " + mh.Heap.toString());
+        // System.out.println("Popped Max: " + mh.popMax()); // Should print HEAP IS EMPTY!!!
+        // System.out.println("New Heap: " + mh.Heap.toString());
 
-        // Re-insert new values
-        mh.insert(33);
-        mh.insert(42);
-        mh.insert(10);
-        mh.insert(14);
-        mh.insert(19);
-        mh.insert(27);
-        mh.insert(44);
-        mh.insert(26);
-        mh.insert(31);
+        // // Insert new values
 
-        System.out.println("Heap after new values: " + mh.Heap.toString());
-        System.out.println("Popped Max: " + mh.popMax()); 
-        System.out.println("New Heap: " + mh.Heap.toString()); 
-        System.out.println("Popped Max: " + mh.popMax()); 
-        System.out.println("New Heap: " + mh.Heap.toString()); 
+        // mh.insert(35);
+        // mh.insert(33);
+        // mh.insert(42);
+        // mh.insert(10);
+        // mh.insert(14);
+        // mh.insert(19);
+        // mh.insert(27);
+        // mh.insert(44);
+        // mh.insert(26);
+        // mh.insert(31);
+
+        // System.out.println("Heap after new values: " + mh.Heap.toString());
+        // System.out.println("Popped Max: " + mh.popMax()); 
+        // System.out.println("New Heap: " + mh.Heap.toString()); 
+        // System.out.println("Popped Max: " + mh.popMax()); 
+        // System.out.println("New Heap: " + mh.Heap.toString()); 
+
+        // Edge case
+        System.out.println("\n--- EDGE CASE: Insert Descending Order ---");
+        PowerOfTwoMaxHeap edgeHeap = new PowerOfTwoMaxHeap(4);
+        for (int i = 100; i >= 1; i--) {
+            edgeHeap.insert(i);
+        }
+        System.out.println("Heap after inserting 100 to 1 descending: " + edgeHeap.Heap.toString());
+        System.out.println("Popped Max: " + edgeHeap.popMax());
+        System.out.println("Popped Max: " + edgeHeap.popMax());
+        System.out.println("Popped Max: " + edgeHeap.popMax());
+        System.out.println("Popped Max: " + edgeHeap.popMax());
+        System.out.println("Popped Max: " + edgeHeap.popMax());
+        System.out.println("Popped Max: " + edgeHeap.popMax());
+        System.out.println("Popped Max: " + edgeHeap.popMax());
+        System.out.println("Popped Max: " + edgeHeap.popMax());
+        System.out.println("Popped Max: " + edgeHeap.popMax());
+        System.out.println("Popped Max: " + edgeHeap.popMax());
+        System.out.println("Heap after popping max: " + edgeHeap.Heap.toString());
+        System.out.println("Heap valid after inserts: " + edgeHeap.isValidMaxHeap());
+
     }
 }
