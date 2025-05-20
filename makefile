@@ -1,6 +1,6 @@
 run:
-	javac MaxHeap.java
-	java MaxHeap
+	javac PowerOfTwoMaxHeap.java
+	java PowerOfTwoMaxHeap
 
 clean:
 	rm -f *.class
